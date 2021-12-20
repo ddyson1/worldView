@@ -11,7 +11,7 @@ login_password = config('PASSWORD')
 recipient = config('RECIPIENT')
 document = config('ATTACHMENT')
 
-def send_email(recipient, subject, message, attachment_path = document):
+def send_email(recipient, subject, message, attachment_path = attach):
     sender = login_name
     msg = MIMEMultipart()
     msg['From'] = sender
