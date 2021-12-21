@@ -1,4 +1,7 @@
 {
+    "name": "10-Year Treasury Constant Maturity Rate",
+    "interval": "monthly",
+    "unit": "percent",
     "data": [
         {
             "date": "2021-11-01",
@@ -3296,8 +3299,5 @@
             "date": "1953-04-01",
             "value": "2.83"
         }
-    ],
-    "interval": "monthly",
-    "name": "10-Year Treasury Constant Maturity Rate",
-    "unit": "percent"
+    ]
 }

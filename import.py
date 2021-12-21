@@ -1,25 +1,42 @@
 import json
-import pandas as pd
-import matplotlib.pyplot as plt
-
-from alpha_vantage.foreignexchange import ForeignExchange
-from alpha_vantage.sectorperformance import SectorPerformances
 
 from decouple import config
 from pprint import pprint
+from requests import Request, Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 
 key = config('ALPHA_VANTAGE_KEY')
 
-fx = ForeignExchange(key='key')
-sp = SectorPerformances(key='key')
+session = Session()
 
-fx_data, fx_meta = fx.get_currency_exchange_rate(from_currency='CNY',to_currency='USD')
-sp_data, sp_meta = sp.get_sector()
+url = 'https://www.alphavantage.co/query?function=REAL_GDP&interval=annual&apikey=' + key
 
-with open('exchange_rate.json', 'w') as f:
-    json.dump(fx_data, f, indent = 4, sort_keys = True)
+try:
+    response = session.get(url)
+    data = json.loads(response.text)
+    with open('data/real_gdp.json', 'w') as f:
+        json.dump(data, f, indent = 4)
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+    print(e)
 
-sp_data['Rank A: Real-Time Performance'].plot(kind='bar')
-plt.title('Real Time Performance (%) per Sector')
-plt.tight_layout()
-plt.savefig('plots/sectoral_performance.pdf')
+url = 'https://www.alphavantage.co/query?function=REAL_GDP_PER_CAPITA&apikey=demo' + key
+session = Session()
+
+try:
+    response = session.get(url)
+    data = json.loads(response.text)
+    with open('data/real_gdp_per_capita.json', 'w') as f:
+        json.dump(data, f, indent = 4)
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+    print(e)
+
+url = 'https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=monthly&maturity=10year&apikey=' + key
+session = Session()
+
+try:
+    response = session.get(url)
+    data = json.loads(response.text)
+    with open('data/yield_10yr.json', 'w') as f:
+        json.dump(data, f, indent = 4)
+except (ConnectionError, Timeout, TooManyRedirects) as e:
+    print(e)
