@@ -20,7 +20,6 @@ except (ConnectionError, Timeout, TooManyRedirects) as e:
     print(e)
 
 url = 'https://www.alphavantage.co/query?function=REAL_GDP_PER_CAPITA&apikey=demo' + key
-session = Session()
 
 try:
     response = session.get(url)
@@ -31,7 +30,6 @@ except (ConnectionError, Timeout, TooManyRedirects) as e:
     print(e)
 
 url = 'https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=monthly&maturity=10year&apikey=' + key
-session = Session()
 
 try:
     response = session.get(url)

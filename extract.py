@@ -12,23 +12,31 @@ with open('data/real_gdp_per_capita.json', 'r') as f:
 with open('data/yield_10yr.json', 'r') as f:
     yield_10yr = json.load(f)
 
-print(type(real_gdp['data'][0]['date']))
-print(type(float(real_gdp['data'][0]['value'])))
+def getGDP():
 
-print(real_gdp['data'][0]['date'])
-print(float(real_gdp['data'][0]['value']))
-
-'''
-def getRGDP():
     dates, values = [], []
+
     for i in real_gdp['data']:
-        dates += [real_gdp['data'][i]['date']]
-        values += [float(real_gdp['data'][i]['value'])]
+        dates += [str(i['date'])]
+        values += [float(i['value'])]
+
     return dates, values
 
-dates, values = getRGDP()
-d = {'dates': dates, 'values': values}
+dates, values = getGDP()
 
+
+d = {'date': dates, 'USD (billions)': values}
 df = pd.DataFrame(data=d)
+
+pd.to_datetime(df['date'], format='%Y/%m/%d')
+df = df.set_index(pd.DatetimeIndex(df['date']))
+
+df.drop(columns=['date'])
+df = df.iloc[::-1]
+
 print(df)
+
+'''
+df.plot()
+plt.show()
 '''
