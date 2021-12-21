@@ -27,9 +27,10 @@ pdf = PDF()
 pdf.alias_nb_pages()
 pdf.add_page()
 pdf.set_font('Helvetica', '', 12)
-
+name = 'plots/realgdp.png'
+pdf.image(name, x = None, y = None, w = 120, h = 90, type = '', link = '')
 '''
 for i in range(1, 21):
     pdf.cell(0, 20, 'printing line number ' + str(i), 0, 1)
 '''
-pdf.output('test.pdf', 'F')
+pdf.output('reports/test.pdf', 'F')

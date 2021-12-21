@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
+sns.set_theme(style="whitegrid")
+sns.set_style("dark")
+
 with open('data/real_gdp.json', 'r') as f:
     real_gdp = json.load(f)
 
@@ -24,19 +27,11 @@ def getGDP():
 
 dates, values = getGDP()
 
-
-d = {'date': dates, 'USD (billions)': values}
-df = pd.DataFrame(data=d)
-
-pd.to_datetime(df['date'], format='%Y/%m/%d')
-df = df.set_index(pd.DatetimeIndex(df['date']))
-
-df.drop(columns=['date'])
+df = pd.DataFrame(data={'date': dates, 'USD (billions)': values})
 df = df.iloc[::-1]
-
+df.reset_index(drop=True, inplace=True)
+df = df.set_index(pd.DatetimeIndex(df['date']))
 print(df)
 
-'''
-df.plot()
-plt.show()
-'''
+sns.lineplot(data=df)
+plt.savefig('plots/realgdp.png')
