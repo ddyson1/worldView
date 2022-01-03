@@ -11,7 +11,7 @@ class PDF(FPDF):
         # Title
         self.cell(30, 24, 'ALLOTROPE LLC', 0, 1, 'C')
         # Line break
-        self.ln(25)
+        self.ln(10)
 
     # Page footer
     def footer(self):
@@ -27,10 +27,9 @@ pdf = PDF()
 pdf.alias_nb_pages()
 pdf.add_page()
 pdf.set_font('Helvetica', '', 12)
-name = 'plots/realgdp.png'
-pdf.image(name, x = None, y = None, w = 120, h = 90, type = '', link = '')
-'''
+# pdf.image('', x = None, y = None, w = 0, h = 0, type = '', link = '')
+
 for i in range(1, 21):
-    pdf.cell(0, 20, 'printing line number ' + str(i), 0, 1)
-'''
+    pdf.cell(0, 6, 'printing line number ' + str(i), 0, 1)
+
 pdf.output('reports/test.pdf', 'F')

@@ -11,7 +11,7 @@ login_password = config('PASSWORD')
 recipient = config('RECIPIENT')
 document = config('ATTACHMENT')
 
-def send_email(recipient, subject, message, attachment_path = attach):
+def send_email(recipient, subject, message, attachment_path = document):
     sender = login_name
     msg = MIMEMultipart()
     msg['From'] = sender
@@ -26,7 +26,7 @@ def send_email(recipient, subject, message, attachment_path = attach):
         part.set_payload(attachment.read())
         encoders.encode_base64(part)
         part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
-        msg.attach(part)
+        msg.attach(part) ``
 
     try:
         server = smtplib.SMTP('smtp.gmail.com', 587)
