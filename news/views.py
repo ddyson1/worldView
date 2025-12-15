@@ -9,7 +9,7 @@ def home(request):
     categories = Category.objects.annotate(article_count=Count('articles')).all()
     sources = NewsSource.objects.filter(is_active=True).annotate(article_count=Count('articles')).all()
 
-    paginator = Paginator(articles, 20)
+    paginator = Paginator(articles, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -26,7 +26,7 @@ def category_view(request, slug):
     category = get_object_or_404(Category, slug=slug)
     articles = Article.objects.filter(categories=category).select_related('source').prefetch_related('categories')
 
-    paginator = Paginator(articles, 20)
+    paginator = Paginator(articles, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -41,7 +41,7 @@ def source_view(request, source_id):
     source = get_object_or_404(NewsSource, id=source_id)
     articles = Article.objects.filter(source=source).select_related('source').prefetch_related('categories')
 
-    paginator = Paginator(articles, 20)
+    paginator = Paginator(articles, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -81,7 +81,7 @@ def search(request):
             Q(author__icontains=query)
         ).select_related('source').prefetch_related('categories')
 
-    paginator = Paginator(articles, 20)
+    paginator = Paginator(articles, 50)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

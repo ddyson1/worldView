@@ -1,49 +1,45 @@
 {% extends 'news/base.html' %}
 
-{% block title %}{{ category.name }} - World News Aggregator{% endblock %}
+{% block title %}{{ category.name }} - Financial News{% endblock %}
 
 {% block content %}
-<h1 style="margin-bottom: 0.5rem; color: #2c3e50;">{{ category.name }}</h1>
-{% if category.description %}
-<p style="color: #7f8c8d; margin-bottom: 2rem;">{{ category.description }}</p>
-{% endif %}
+<!-- Category Header -->
+<div class="category-filter">
+    <a href="{% url 'news:home' %}">← All News</a>
+    <a class="active">{{ category.name }}</a>
+</div>
 
-<p><a href="{% url 'news:home' %}" style="color: #3498db;">&larr; Back to Home</a></p>
-
-<div style="margin-top: 2rem;">
-    {% for article in page_obj %}
-    <div class="article-card">
-        <h2><a href="{% url 'news:article_detail' article.id %}">{{ article.title }}</a></h2>
-        <div class="article-meta">
-            <span>Source: <a href="{% url 'news:source' article.source.id %}">{{ article.source.name }}</a></span>
-            {% if article.author %}| Author: {{ article.author }}{% endif %}
-            | {{ article.published_at|date:"M d, Y H:i" }}
-        </div>
-        {% if article.description %}
-        <p class="article-description">{{ article.description|truncatewords:50 }}</p>
-        {% endif %}
-        <a href="{{ article.url }}" target="_blank" class="article-link">Read Original</a>
+<!-- Headlines List -->
+{% for article in page_obj %}
+<div class="headline-row">
+    <div class="time">{{ article.published_at|date:"M d, h:i A" }}</div>
+    <div class="source">{{ article.source.name }}</div>
+    <div class="title">
+        <a href="{{ article.url }}" target="_blank" rel="noopener">{{ article.title }}</a>
     </div>
-    {% empty %}
-    <p>No articles in this category yet.</p>
-    {% endfor %}
+</div>
+{% empty %}
+<div class="no-articles">
+    No articles in {{ category.name }} yet.
+</div>
+{% endfor %}
 
-    {% if page_obj.has_other_pages %}
-    <div class="pagination">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; First</a>
-            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
+<!-- Pagination -->
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo;</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </span>
+    <span class="current">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
-        {% endif %}
-    </div>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
     {% endif %}
 </div>
+{% endif %}
 {% endblock %}
