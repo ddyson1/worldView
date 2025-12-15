@@ -1,0 +1,14 @@
+name: worldview-news
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - Django>=5.2.0
+      - atoma>=0.0.17
+      - requests>=2.32.0
+      - beautifulsoup4>=4.14.0
+      - lxml>=6.0.0
+      - python-decouple>=3.8
