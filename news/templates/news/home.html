@@ -1,0 +1,47 @@
+{% extends 'news/base.html' %}
+
+{% block title %}Financial News - Live Headlines{% endblock %}
+
+{% block content %}
+<!-- Category Filter -->
+<div class="category-filter">
+    <a href="{% url 'news:home' %}">All</a>
+    {% for category in categories %}
+    <a href="{% url 'news:category' category.slug %}">{{ category.name }}</a>
+    {% endfor %}
+</div>
+
+<!-- Headlines List -->
+{% for article in page_obj %}
+<div class="headline-row">
+    <div class="time">{{ article.published_at|date:"M d, h:i A" }}</div>
+    <div class="source">{{ article.source.name }}</div>
+    <div class="title">
+        <a href="{{ article.url }}" target="_blank" rel="noopener">{{ article.title }}</a>
+    </div>
+</div>
+{% empty %}
+<div class="no-articles">
+    No articles found. Run <code>python manage.py fetch_news</code> to fetch headlines.
+</div>
+{% endfor %}
+
+<!-- Pagination -->
+{% if page_obj.has_other_pages %}
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo;</a>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span class="current">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

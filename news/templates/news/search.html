@@ -1,0 +1,59 @@
+{% extends 'news/base.html' %}
+
+{% block title %}Search Results - World News Aggregator{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 1rem; color: #2c3e50;">Search Results</h1>
+
+{% if query %}
+<p style="color: #7f8c8d; margin-bottom: 2rem;">
+    Showing results for: <strong>"{{ query }}"</strong>
+    {% if page_obj.paginator.count %}
+        ({{ page_obj.paginator.count }} article{{ page_obj.paginator.count|pluralize }} found)
+    {% endif %}
+</p>
+{% endif %}
+
+<p><a href="{% url 'news:home' %}" style="color: #3498db;">&larr; Back to Home</a></p>
+
+<div style="margin-top: 2rem;">
+    {% for article in page_obj %}
+    <div class="article-card">
+        <h2><a href="{% url 'news:article_detail' article.id %}">{{ article.title }}</a></h2>
+        <div class="article-meta">
+            <span>Source: <a href="{% url 'news:source' article.source.id %}">{{ article.source.name }}</a></span>
+            {% if article.author %}| Author: {{ article.author }}{% endif %}
+            | {{ article.published_at|date:"M d, Y H:i" }}
+        </div>
+        {% if article.description %}
+        <p class="article-description">{{ article.description|truncatewords:50 }}</p>
+        {% endif %}
+        <a href="{{ article.url }}" target="_blank" class="article-link">Read Original</a>
+    </div>
+    {% empty %}
+    {% if query %}
+    <p>No articles found matching your search.</p>
+    {% else %}
+    <p>Enter a search term to find articles.</p>
+    {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_other_pages %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?q={{ query }}&page=1">&laquo; First</a>
+            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
