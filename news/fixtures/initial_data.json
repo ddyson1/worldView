@@ -1,0 +1,160 @@
+[
+  {
+    "model": "news.category",
+    "pk": 1,
+    "fields": {
+      "name": "World News",
+      "slug": "world-news",
+      "description": "International news and global events",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 2,
+    "fields": {
+      "name": "Technology",
+      "slug": "technology",
+      "description": "Technology news, innovation, and digital trends",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 3,
+    "fields": {
+      "name": "Business",
+      "slug": "business",
+      "description": "Business news, markets, and economy",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 4,
+    "fields": {
+      "name": "Politics",
+      "slug": "politics",
+      "description": "Political news and government affairs",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 5,
+    "fields": {
+      "name": "Science",
+      "slug": "science",
+      "description": "Science news and discoveries",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 1,
+    "fields": {
+      "name": "BBC World News",
+      "url": "https://www.bbc.com/news/world",
+      "rss_url": "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "description": "BBC World News provides trusted international news coverage",
+      "country": "United Kingdom",
+      "language": "en",
+      "category": 1,
+      "is_active": true,
+      "fetch_interval": 30,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 2,
+    "fields": {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com",
+      "rss_url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "description": "Al Jazeera English news from the Middle East and beyond",
+      "country": "Qatar",
+      "language": "en",
+      "category": 1,
+      "is_active": true,
+      "fetch_interval": 30,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 3,
+    "fields": {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com",
+      "rss_url": "https://techcrunch.com/feed/",
+      "description": "Technology and startup news",
+      "country": "United States",
+      "language": "en",
+      "category": 2,
+      "is_active": true,
+      "fetch_interval": 60,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 4,
+    "fields": {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com",
+      "rss_url": "https://feeds.arstechnica.com/arstechnica/index",
+      "description": "Technology news and analysis",
+      "country": "United States",
+      "language": "en",
+      "category": 2,
+      "is_active": true,
+      "fetch_interval": 60,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 5,
+    "fields": {
+      "name": "Reuters Business",
+      "url": "https://www.reuters.com/business",
+      "rss_url": "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best",
+      "description": "Reuters business and financial news",
+      "country": "United Kingdom",
+      "language": "en",
+      "category": 3,
+      "is_active": true,
+      "fetch_interval": 30,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 6,
+    "fields": {
+      "name": "Science Daily",
+      "url": "https://www.sciencedaily.com",
+      "rss_url": "https://www.sciencedaily.com/rss/all.xml",
+      "description": "Latest science news and research",
+      "country": "United States",
+      "language": "en",
+      "category": 5,
+      "is_active": true,
+      "fetch_interval": 120,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  }
+]

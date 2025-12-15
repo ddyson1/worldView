@@ -1,0 +1,71 @@
+{% extends 'news/base.html' %}
+
+{% block title %}{{ article.title }} - World News Aggregator{% endblock %}
+
+{% block content %}
+<div class="two-column">
+    <div>
+        <article>
+            <h1 style="color: #2c3e50; margin-bottom: 1rem;">{{ article.title }}</h1>
+
+            <div class="article-meta" style="margin-bottom: 1rem;">
+                <span>Source: <a href="{% url 'news:source' article.source.id %}">{{ article.source.name }}</a></span>
+                {% if article.author %} | Author: {{ article.author }}{% endif %}
+                | Published: {{ article.published_at|date:"F d, Y H:i" }}
+            </div>
+
+            {% if article.categories.exists %}
+            <div style="margin-bottom: 1rem;">
+                Categories:
+                {% for category in article.categories.all %}
+                    <a href="{% url 'news:category' category.slug %}" style="color: #3498db; text-decoration: none; background-color: #ecf0f1; padding: 0.25rem 0.5rem; border-radius: 4px; margin-right: 0.5rem;">
+                        {{ category.name }}
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if article.image_url %}
+            <img src="{{ article.image_url }}" alt="{{ article.title }}" style="max-width: 100%; height: auto; margin-bottom: 1rem; border-radius: 8px;">
+            {% endif %}
+
+            {% if article.description %}
+            <div style="background-color: #ecf0f1; padding: 1rem; border-left: 4px solid #3498db; margin-bottom: 1rem;">
+                <strong>Summary:</strong> {{ article.description }}
+            </div>
+            {% endif %}
+
+            {% if article.content %}
+            <div style="line-height: 1.8; color: #555; margin-bottom: 2rem;">
+                {{ article.content|linebreaks }}
+            </div>
+            {% endif %}
+
+            <a href="{{ article.url }}" target="_blank" class="article-link" style="display: inline-block; margin-bottom: 1rem;">
+                Read Full Article on {{ article.source.name }}
+            </a>
+
+            <p><a href="{% url 'news:home' %}" style="color: #3498db;">&larr; Back to Home</a></p>
+        </article>
+    </div>
+
+    <aside>
+        {% if related_articles %}
+        <div class="sidebar">
+            <h2>More from {{ article.source.name }}</h2>
+            <ul>
+                {% for related in related_articles %}
+                <li>
+                    <a href="{% url 'news:article_detail' related.id %}">
+                        {{ related.title|truncatewords:10 }}
+                    </a>
+                    <br>
+                    <small style="color: #7f8c8d;">{{ related.published_at|date:"M d, Y" }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}
