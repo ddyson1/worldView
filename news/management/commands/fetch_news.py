@@ -25,7 +25,10 @@ class Command(BaseCommand):
         sources = NewsSource.objects.filter(is_active=True)
 
         if options['source']:
-            sources = sources.filter(name__icontains=options['source']) | sources.filter(id=options['source'])
+            source_filter = sources.filter(name__icontains=options['source'])
+            if options['source'].isdigit():
+                source_filter = source_filter | sources.filter(id=int(options['source']))
+            sources = source_filter
 
         if not sources.exists():
             self.stdout.write(self.style.WARNING('No active news sources found'))
