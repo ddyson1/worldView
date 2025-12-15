@@ -3,6 +3,46 @@
     "model": "news.category",
     "pk": 1,
     "fields": {
+      "name": "Finance",
+      "slug": "finance",
+      "description": "Financial markets, investing, and personal finance",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 2,
+    "fields": {
+      "name": "Business",
+      "slug": "business",
+      "description": "Business news, corporate affairs, and economy",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 3,
+    "fields": {
+      "name": "Markets",
+      "slug": "markets",
+      "description": "Stock markets, commodities, and trading",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 4,
+    "fields": {
+      "name": "Economics",
+      "slug": "economics",
+      "description": "Economic policy, analysis, and global economics",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.category",
+    "pk": 5,
+    "fields": {
       "name": "World News",
       "slug": "world-news",
       "description": "International news and global events",
@@ -10,54 +50,14 @@
     }
   },
   {
-    "model": "news.category",
-    "pk": 2,
-    "fields": {
-      "name": "Technology",
-      "slug": "technology",
-      "description": "Technology news, innovation, and digital trends",
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "news.category",
-    "pk": 3,
-    "fields": {
-      "name": "Business",
-      "slug": "business",
-      "description": "Business news, markets, and economy",
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "news.category",
-    "pk": 4,
-    "fields": {
-      "name": "Politics",
-      "slug": "politics",
-      "description": "Political news and government affairs",
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "news.category",
-    "pk": 5,
-    "fields": {
-      "name": "Science",
-      "slug": "science",
-      "description": "Science news and discoveries",
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
     "model": "news.newssource",
     "pk": 1,
     "fields": {
-      "name": "BBC World News",
-      "url": "https://www.bbc.com/news/world",
-      "rss_url": "http://feeds.bbci.co.uk/news/world/rss.xml",
-      "description": "BBC World News provides trusted international news coverage",
-      "country": "United Kingdom",
+      "name": "Yahoo Finance",
+      "url": "https://finance.yahoo.com",
+      "rss_url": "https://finance.yahoo.com/news/rssindex",
+      "description": "Yahoo Finance - stock market news and financial analysis",
+      "country": "United States",
       "language": "en",
       "category": 1,
       "is_active": true,
@@ -71,13 +71,13 @@
     "model": "news.newssource",
     "pk": 2,
     "fields": {
-      "name": "Al Jazeera",
-      "url": "https://www.aljazeera.com",
-      "rss_url": "https://www.aljazeera.com/xml/rss/all.xml",
-      "description": "Al Jazeera English news from the Middle East and beyond",
-      "country": "Qatar",
+      "name": "Wall Street Journal",
+      "url": "https://www.wsj.com",
+      "rss_url": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+      "description": "Wall Street Journal - business and financial news",
+      "country": "United States",
       "language": "en",
-      "category": 1,
+      "category": 2,
       "is_active": true,
       "fetch_interval": 30,
       "last_fetched": null,
@@ -89,49 +89,13 @@
     "model": "news.newssource",
     "pk": 3,
     "fields": {
-      "name": "TechCrunch",
-      "url": "https://techcrunch.com",
-      "rss_url": "https://techcrunch.com/feed/",
-      "description": "Technology and startup news",
+      "name": "New York Times Business",
+      "url": "https://www.nytimes.com/section/business",
+      "rss_url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
+      "description": "New York Times business and economy coverage",
       "country": "United States",
       "language": "en",
       "category": 2,
-      "is_active": true,
-      "fetch_interval": 60,
-      "last_fetched": null,
-      "created_at": "2025-01-01T00:00:00Z",
-      "updated_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "news.newssource",
-    "pk": 4,
-    "fields": {
-      "name": "Ars Technica",
-      "url": "https://arstechnica.com",
-      "rss_url": "https://feeds.arstechnica.com/arstechnica/index",
-      "description": "Technology news and analysis",
-      "country": "United States",
-      "language": "en",
-      "category": 2,
-      "is_active": true,
-      "fetch_interval": 60,
-      "last_fetched": null,
-      "created_at": "2025-01-01T00:00:00Z",
-      "updated_at": "2025-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "news.newssource",
-    "pk": 5,
-    "fields": {
-      "name": "Reuters Business",
-      "url": "https://www.reuters.com/business",
-      "rss_url": "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best",
-      "description": "Reuters business and financial news",
-      "country": "United Kingdom",
-      "language": "en",
-      "category": 3,
       "is_active": true,
       "fetch_interval": 30,
       "last_fetched": null,
@@ -141,17 +105,35 @@
   },
   {
     "model": "news.newssource",
-    "pk": 6,
+    "pk": 4,
     "fields": {
-      "name": "Science Daily",
-      "url": "https://www.sciencedaily.com",
-      "rss_url": "https://www.sciencedaily.com/rss/all.xml",
-      "description": "Latest science news and research",
-      "country": "United States",
+      "name": "Financial Times",
+      "url": "https://www.ft.com",
+      "rss_url": "https://www.ft.com/?format=rss",
+      "description": "Financial Times - global business and financial news",
+      "country": "United Kingdom",
       "language": "en",
-      "category": 5,
+      "category": 2,
       "is_active": true,
-      "fetch_interval": 120,
+      "fetch_interval": 30,
+      "last_fetched": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 5,
+    "fields": {
+      "name": "The Economist",
+      "url": "https://www.economist.com",
+      "rss_url": "https://www.economist.com/rss",
+      "description": "The Economist - global news, politics, business and finance",
+      "country": "United Kingdom",
+      "language": "en",
+      "category": 4,
+      "is_active": true,
+      "fetch_interval": 60,
       "last_fetched": null,
       "created_at": "2025-01-01T00:00:00Z",
       "updated_at": "2025-01-01T00:00:00Z"

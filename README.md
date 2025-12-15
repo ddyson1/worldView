@@ -1,11 +1,12 @@
-# World News Aggregator
+# Financial News Aggregator
 
-A Django web application for monitoring and aggregating world news from multiple RSS/Atom feeds into a single, unified interface.
+A Django web application for monitoring and aggregating financial and business news from premium sources including Yahoo Finance, Wall Street Journal, New York Times, Financial Times, and The Economist into a single, unified interface.
 
 ## Features
 
-- **Multi-source News Aggregation**: Fetch articles from multiple news sources via RSS/Atom feeds
-- **Categorization**: Organize news by categories (Politics, Technology, Sports, etc.)
+- **Multi-source Financial News Aggregation**: Fetch articles from premium financial sources via RSS/Atom feeds
+- **Categorization**: Organize news by categories (Finance, Business, Markets, Economics, World News)
+- **Premium Sources**: Pre-configured with Yahoo Finance, WSJ, NYT, Financial Times, and The Economist
 - **Search Functionality**: Full-text search across article titles, descriptions, and content
 - **Source Management**: Easy management of news sources through Django admin
 - **Responsive Design**: Clean, modern interface that works on all devices
@@ -57,16 +58,28 @@ python manage.py runserver
    - **Is Active**: Check to enable fetching
    - **Fetch Interval**: Minutes between fetches (default: 60)
 
-### Example RSS Feed URLs
+### Pre-configured Financial Sources
 
-Here are some popular news sources you can add:
+The app comes pre-loaded with these premium financial news sources:
 
-- **BBC World News**: http://feeds.bbci.co.uk/news/world/rss.xml
-- **Reuters World**: https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best
-- **Al Jazeera**: https://www.aljazeera.com/xml/rss/all.xml
-- **The Guardian World**: https://www.theguardian.com/world/rss
-- **CNN World**: http://rss.cnn.com/rss/edition_world.rss
-- **NPR News**: https://feeds.npr.org/1001/rss.xml
+1. **Yahoo Finance** - Stock market news and financial analysis
+2. **Wall Street Journal** - Business and financial news
+3. **New York Times Business** - Business and economy coverage
+4. **Financial Times** - Global business and financial news
+5. **The Economist** - Global news, politics, business and finance
+
+### Additional RSS Feeds You Can Add
+
+**More Financial News:**
+- Bloomberg Markets: https://www.bloomberg.com/feeds/podcasts/etf_report.xml
+- Reuters Business: https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best
+- CNBC Top News: https://www.cnbc.com/id/100003114/device/rss/rss.html
+- MarketWatch: http://feeds.marketwatch.com/marketwatch/topstories/
+
+**Business & Tech:**
+- Forbes: https://www.forbes.com/real-time/feed2/
+- Business Insider: https://www.businessinsider.com/rss
+- TechCrunch: https://techcrunch.com/feed/
 
 ### Fetching News
 
@@ -86,7 +99,7 @@ python manage.py fetch_news
 python manage.py fetch_news
 
 # Fetch from a specific source
-python manage.py fetch_news --source "BBC"
+python manage.py fetch_news --source "Yahoo Finance"
 
 # Force fetch regardless of interval
 python manage.py fetch_news --force

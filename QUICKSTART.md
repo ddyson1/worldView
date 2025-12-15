@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get your World News Aggregator up and running in minutes!
+Get your Financial News Aggregator up and running in minutes!
 
 ## Prerequisites
 
@@ -25,15 +25,15 @@ python manage.py migrate
 
 ### 3. Load Sample Data
 
-Load sample categories and news sources:
+Load sample categories and financial news sources:
 
 ```bash
 python manage.py loaddata news/fixtures/initial_data.json
 ```
 
 This will create:
-- 5 categories (World News, Technology, Business, Politics, Science)
-- 6 news sources (BBC, Al Jazeera, TechCrunch, Ars Technica, Reuters, Science Daily)
+- 5 categories (Finance, Business, Markets, Economics, World News)
+- 5 premium news sources (Yahoo Finance, Wall Street Journal, New York Times, Financial Times, The Economist)
 
 ### 4. Create Admin User
 
@@ -72,24 +72,27 @@ Open your browser and go to:
 3. Fill in the RSS/Atom feed URL and other details
 4. Run `python manage.py fetch_news` to fetch from the new source
 
-### Popular RSS Feeds to Add
+### Pre-configured Sources
 
-**World News:**
-- BBC World: http://feeds.bbci.co.uk/news/world/rss.xml
-- CNN World: http://rss.cnn.com/rss/edition_world.rss
-- The Guardian: https://www.theguardian.com/world/rss
-- NPR News: https://feeds.npr.org/1001/rss.xml
+The app comes with these premium financial news sources:
 
-**Technology:**
-- TechCrunch: https://techcrunch.com/feed/
-- The Verge: https://www.theverge.com/rss/index.xml
-- Ars Technica: https://feeds.arstechnica.com/arstechnica/index
-- Hacker News: https://hnrss.org/frontpage
+1. **Yahoo Finance** - Stock market and financial analysis
+2. **Wall Street Journal** - Business and financial news
+3. **New York Times Business** - Business and economy coverage
+4. **Financial Times** - Global business and financial news
+5. **The Economist** - Global economics and business
 
-**Science:**
-- Science Daily: https://www.sciencedaily.com/rss/all.xml
-- NASA: https://www.nasa.gov/rss/dyn/breaking_news.rss
-- Nature News: http://feeds.nature.com/nature/rss/current
+### Additional Financial RSS Feeds to Add
+
+**More Financial News:**
+- Bloomberg: https://www.bloomberg.com/feeds/podcasts/etf_report.xml
+- Reuters Business: https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best
+- CNBC: https://www.cnbc.com/id/100003114/device/rss/rss.html
+- MarketWatch: http://feeds.marketwatch.com/marketwatch/topstories/
+
+**Business & Tech:**
+- Forbes: https://www.forbes.com/real-time/feed2/
+- Business Insider: https://www.businessinsider.com/rss
 
 ### Automate News Fetching
 
